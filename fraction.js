@@ -619,25 +619,25 @@
       var t = (this["s"] * this["n"] * P["d"] - P["s"] * P["n"] * this["d"]);
       return (0 < t) - (t < 0);
     },
-    
+
     "simplify": function(eps) {
-      
+
       // First naive implementation, needs improvement
-      
+
       if (isNaN(this['n']) || isNaN(this['d'])) {
         return this;
       }
 
       var cont = this['abs']()['toContinued']();
-      
+
       eps = eps || 0.001;
-      
+
       function rec(a) {
         if (a.length === 1)
           return new Fraction(a[0]);
         return rec(a.slice(1))['inverse']()['add'](a[0]);
       }
-      
+
       for (var i = 0; i < cont.length; i++) {
         var tmp = rec(cont.slice(0, i + 1));
         if (tmp['sub'](this['abs']())['abs']().valueOf() < eps) {
@@ -666,6 +666,19 @@
     'valueOf': function() {
 
       return this["s"] * this["n"] / this["d"];
+    },
+
+    /**
+     * Returns a map from values to it's String representation
+     *
+     * Ex: new Fraction({"s": -1, "n": 2, "d": 3).mapToStrings() => {"s": "-1", "n": "2", "d": "3"}
+     **/
+    'mapToStrings': function() {
+      return {
+        "s": String(this["s"]),
+        "n": String(this["n"]),
+        "d": String(this["d"])
+      };
     },
 
     /**
