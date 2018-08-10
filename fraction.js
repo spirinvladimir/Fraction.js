@@ -100,9 +100,7 @@
     var N = 10000000;
     var M;
 
-    if (p1 === undefined || p1 === null) {
-      /* void */
-    } else if (p2 !== undefined) {
+    if (p2 !== undefined) {
       n = p1;
       d = p2;
       s = n * d;
@@ -195,8 +193,6 @@
 
           if (B[A] === '-') {// Check for minus sign at the beginning
             s = -1;
-            A++;
-          } else if (B[A] === '+') {// Check for plus sign at the beginning
             A++;
           }
 
@@ -342,10 +338,6 @@
    * @param {number=} b
    */
   function Fraction(a, b) {
-
-    if (!(this instanceof Fraction)) {
-      return new Fraction(a, b);
-    }
 
     parse(a, b);
 
