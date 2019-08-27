@@ -97,7 +97,7 @@
     var A = 0, B = 1;
     var C = 1, D = 1;
 
-    var N = 10000000;
+    var N = 100000000;
     var M;
 
     if (p2 !== undefined) {
